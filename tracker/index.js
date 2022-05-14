@@ -42,7 +42,7 @@ import { removeTrailingSlash } from '../lib/url';
   const listeners = {};
   let currentUrl = `${pathname}${search}`;
   let currentRef = document.referrer;
-  let gacid =  ga.getAll()[0].get('clientId'); // google analytics client id
+  let gacid = `${ga.getAll()[0].get('clientId')}` ; // google analytics client id
 
   let cache;
 
@@ -91,14 +91,14 @@ import { removeTrailingSlash } from '../lib/url';
     );
   };
 
-  const trackView = (url = currentUrl, referrer = currentRef, uuid = website, gacid = gacid) => {
+  const trackView = (url = currentUrl, referrer = currentRef, uuid = website, cid = gacid) => {
     collect(
       'pageview',
       assign(getPayload(), {
         website: uuid,
         url,
         referrer,
-        gacid
+        cid
       }),
     );
   };

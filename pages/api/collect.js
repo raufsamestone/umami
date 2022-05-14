@@ -45,14 +45,14 @@ export default async (req, res) => {
 
   const { type, payload } = getJsonBody(req);
 
-  let { url, referrer, event_type, event_value } = payload;
+  let { url, referrer, cid, event_type, event_value } = payload;
 
   if (process.env.REMOVE_TRAILING_SLASH) {
     url = removeTrailingSlash(url);
   }
 
   if (type === 'pageview') {
-    await savePageView(website_id, session_id, url, referrer);
+    await savePageView(website_id, session_id, url, referrer, cid);
   } else if (type === 'event') {
     await saveEvent(website_id, session_id, url, event_type, event_value);
   } else {
