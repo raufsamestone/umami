@@ -9,9 +9,7 @@ import { removeTrailingSlash } from '../lib/url';
     localStorage,
     document,
     history,
-    window: {
-      ga
-    },
+    ga
   } = window;
 
   const script = document.querySelector('script[data-website-id]');
