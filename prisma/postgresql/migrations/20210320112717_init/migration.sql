@@ -31,7 +31,7 @@ CREATE TABLE "pageview" (
     "created_at" TIMESTAMPTZ(6) DEFAULT CURRENT_TIMESTAMP,
     "url" VARCHAR(500) NOT NULL,
     "referrer" VARCHAR(500),
-
+    "cid" VARCHAR(500),
     PRIMARY KEY ("view_id")
 );
 

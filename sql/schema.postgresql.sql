@@ -43,7 +43,8 @@ create table pageview (
     session_id int not null references session(session_id) on delete cascade,
     created_at timestamp with time zone default current_timestamp,
     url varchar(500) not null,
-    referrer varchar(500)
+    referrer varchar(500),
+    cid varchar(500)
 );
 
 create table event (
