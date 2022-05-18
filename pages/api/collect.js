@@ -45,7 +45,7 @@ export default async (req, res) => {
 
   const { type, payload } = getJsonBody(req);
 
-  let { url, referrer, cid, event_type, event_value } = payload;
+  let { url, referrer, event_type, event_value, cid } = payload;
 
   if (process.env.REMOVE_TRAILING_SLASH) {
     url = removeTrailingSlash(url);

@@ -9,7 +9,6 @@ import { removeTrailingSlash } from '../lib/url';
     localStorage,
     document,
     history,
-    ga
   } = window;
 
   const script = document.querySelector('script[data-website-id]');
@@ -40,7 +39,7 @@ import { removeTrailingSlash } from '../lib/url';
   const listeners = {};
   let currentUrl = `${pathname}${search}`;
   let currentRef = document.referrer;
-  let gacid = `${ga.getAll()[0].get('clientId')}` ; // google analytics client id
+  // google analytics client id
 
   let cache;
 
@@ -89,14 +88,27 @@ import { removeTrailingSlash } from '../lib/url';
     );
   };
 
-  const trackView = (url = currentUrl, referrer = currentRef, uuid = website, cid = gacid) => {
+  const gacid = [];
+
+  setTimeout(() => {
+    let getClientID = window.globalThis.gaGlobal.vid;
+    gacid.push({ cid: getClientID });
+    console.log('gaGlobal', gacid[0].cid);
+  }, 2000);
+
+  const trackView = (
+    url = currentUrl,
+    referrer = currentRef,
+    uuid = website,
+    cid = gacid[0].cid,
+  ) => {
     collect(
       'pageview',
       assign(getPayload(), {
         website: uuid,
         url,
         referrer,
-        cid
+        cid,
       }),
     );
   };
